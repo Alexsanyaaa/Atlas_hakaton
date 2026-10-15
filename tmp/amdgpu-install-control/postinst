@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+repository="#deb https://repo.radeon.com/amdgpu/7.2.1/ubuntu noble proprietary"
+list="/etc/apt/sources.list.d/amdgpu-proprietary.list"
+
+if [ -f $list ] && grep -q "^deb" $list; then
+	repository=$(echo "$repository" | sed 's/^#deb /deb /')
+fi
+
+cat > $list << EOF
+# Enabling this repository requires acceptance of the following license:
+# /usr/share/amdgpu-install/AMDGPUPROEULA
+$repository
+EOF
+
+exit 0
+
+

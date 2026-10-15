@@ -1,0 +1,9 @@
+27a80c89d880ce1ba70d1af1c0cb4039  usr/bin/amdgpu-install
+9be1dd80c88603f999d80af1cfa06fbb  usr/bin/amdgpu-setup
+0edd336396b019512b94c98b0240ea77  usr/share/amdgpu-install/AMDGPUPROEULA
+310e692bda7946ee35321d24cf698b65  usr/share/amdgpu-install/amdgpu.list.template
+4b12cd08674e0321ba232ee6e39df86f  usr/share/amdgpu-install/orig/amdgpu.list
+7bb19a5476d275731fad1ac00ae0c97b  usr/share/amdgpu-install/orig/rocm.list
+bfbf5d3145f3054b035c748efb0a6e3c  usr/share/amdgpu-install/rocm.list.template
+b4d52c0aef393a009668cb5e1bd4b1b7  usr/share/doc/amdgpu-install/changelog.Debian.gz
+1cc2ccbd48178dec3ac4fe3f75deb273  usr/share/doc/amdgpu-install/copyright

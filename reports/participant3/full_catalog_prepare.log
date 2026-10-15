@@ -1,0 +1,42 @@
+{"event": "catalog_progress", "offers_read": 2000, "source_fraction": 0.00365, "elapsed_seconds": 49.1}
+{"event": "catalog_progress", "offers_read": 4000, "source_fraction": 0.00681, "elapsed_seconds": 77.6}
+{"event": "catalog_progress", "offers_read": 6000, "source_fraction": 0.01014, "elapsed_seconds": 105.7}
+{"event": "catalog_progress", "offers_read": 8000, "source_fraction": 0.01404, "elapsed_seconds": 139.7}
+{"event": "catalog_progress", "offers_read": 10000, "source_fraction": 0.01798, "elapsed_seconds": 172.3}
+{"event": "catalog_progress", "offers_read": 12000, "source_fraction": 0.02147, "elapsed_seconds": 201.3}
+{"event": "catalog_progress", "offers_read": 14000, "source_fraction": 0.0253, "elapsed_seconds": 231.1}
+{"event": "catalog_progress", "offers_read": 16000, "source_fraction": 0.02982, "elapsed_seconds": 272.1}
+{"event": "catalog_progress", "offers_read": 18000, "source_fraction": 0.03453, "elapsed_seconds": 310.1}
+{"event": "catalog_progress", "offers_read": 20000, "source_fraction": 0.03984, "elapsed_seconds": 353.6}
+{"event": "catalog_progress", "offers_read": 22000, "source_fraction": 0.04453, "elapsed_seconds": 387.4}
+{"event": "catalog_progress", "offers_read": 24000, "source_fraction": 0.04814, "elapsed_seconds": 417.4}
+{"event": "catalog_progress", "offers_read": 26000, "source_fraction": 0.05242, "elapsed_seconds": 450.1}
+{"event": "catalog_progress", "offers_read": 28000, "source_fraction": 0.05639, "elapsed_seconds": 483.2}
+{"event": "catalog_progress", "offers_read": 30000, "source_fraction": 0.06015, "elapsed_seconds": 515.3}
+{"event": "catalog_progress", "offers_read": 32000, "source_fraction": 0.06538, "elapsed_seconds": 568.1}
+{"event": "catalog_progress", "offers_read": 34000, "source_fraction": 0.06939, "elapsed_seconds": 608.7}
+{"event": "catalog_progress", "offers_read": 36000, "source_fraction": 0.07289, "elapsed_seconds": 647.7}
+{"event": "catalog_progress", "offers_read": 38000, "source_fraction": 0.07782, "elapsed_seconds": 698.5}
+{"event": "catalog_progress", "offers_read": 40000, "source_fraction": 0.08136, "elapsed_seconds": 743.8}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/alex/desktop/haha/src/catalog_ai/participant3/full_corpus.py", line 126, in <module>
+    db = connection(output / 'catalog.sqlite')
+    ^^^^^^
+  File "/home/alex/desktop/haha/src/catalog_ai/participant3/full_corpus.py", line 122, in main
+    """
+    ^^^^
+  File "/home/alex/desktop/haha/src/catalog_ai/participant3/full_corpus.py", line 73, in catalog
+    try:
+        
+  File "/home/alex/desktop/haha/src/catalog_ai/participant3/disk_pickle.py", line 201, in iter_catalog
+    elif name == 'MEMOIZE':
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/desktop/haha/src/catalog_ai/participant3/disk_pickle.py", line 124, in memo_put
+    (index, json.dumps(pack(value), ensure_ascii=False)))
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/desktop/haha/src/catalog_ai/participant3/disk_pickle.py", line 60, in _cache
+    while len(cache) > self.cache_size:
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

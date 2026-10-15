@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><title>check</title></head>
+<body><pre id="out" style="font:12px/1.4 Consolas,monospace;white-space:pre-wrap"></pre>
+<script src="js/util.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/schema.js"></script>
+<script src="js/dictionaries.js"></script>
+<script src="js/extractor.js"></script>
+<script src="js/seed.js"></script>
+<script src="js/store.js"></script>
+<script>
+  try { localStorage.removeItem('atlas.state.v1'); } catch (e) {}
+  const { store, schema, extractor } = Atlas;
+  store.init();
+  const lines = [];
+  for (const card of store.state.cards) {
+    lines.push(`\n${card.sku} [${store.cardStatus(card)}] ${card.title}`);
+    for (const [attr, f] of Object.entries(card.fields)) {
+      const st = store.fieldState(attr, f);
+      const a = extractor.assess(attr, f);
+      const cands = f.candidates.map((c) => `${c.display}${c.rejected ? '✕' : ''}(${c.score};${c.evidences.map((e) => e.kind[0] + ':' + e.pattern).join(',')})`).join(' | ');
+      lines.push(`   ${attr.padEnd(13)} ${st.padEnd(9)} ${a.kind.padEnd(9)} ${f.decision ? '=> ' + (f.decision.display || '∅') : ''}  ${cands}`);
+    }
+  }
+  const m = store.metrics(store.state.cards);
+  lines.unshift(JSON.stringify(m));
+  document.getElementById('out').textContent = lines.join('\n');
+</script></body></html>

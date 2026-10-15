@@ -1,0 +1,18 @@
+[
+  {
+    "epoch": 1,
+    "steps": 9,
+    "train_loss": 0.8143234942640577,
+    "dev_loss": 0.8193194700611962,
+    "dev_silver_span_f1": 0.0,
+    "epoch_seconds": 29.404805829002726
+  },
+  {
+    "epoch": 2,
+    "steps": 18,
+    "train_loss": 0.6908921114036015,
+    "dev_loss": 0.7117012330779323,
+    "dev_silver_span_f1": 0.0,
+    "epoch_seconds": 25.79917890700017
+  }
+]

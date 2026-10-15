@@ -1,0 +1,29 @@
+{
+  "prototype": "Атлас — AI-каталог",
+  "implementation": "static HTML/CSS/JS; localStorage; no model/backend",
+  "checks": [
+    "JavaScript syntax (node --check)",
+    "HTTP 200 local preview",
+    "Edit and accept values; card becomes ready",
+    "Evidence highlight: серебристый и белый",
+    "Persistence across reload",
+    "Search empty state",
+    "JSON file import and pagination",
+    "JSON export: manually edited values have no inherited model confidence",
+    "Dictionary add/delete",
+    "Analytics and method navigation",
+    "Mobile 390px: no page overflow; navigation works",
+    "Reset demo via custom dialog",
+    "No browser console errors observed"
+  ],
+  "not_verified": [
+    "Real model integration (out of scope)",
+    "CSV import through browser (parser implemented, not exercised in browser)",
+    "Production load/performance",
+    "Independent quality/calibration"
+  ],
+  "screenshots": [
+    "atlas-catalog-preview.png",
+    "atlas-review-preview.png"
+  ]
+}

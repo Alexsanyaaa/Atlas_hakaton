@@ -1,0 +1,35 @@
+# Fast demonstration checkpoint. Does not read test.jsonl.gz.
+model: ai-forever/ruBert-base
+revision: 05f37a2ca9e333fd18f30cd0c96c68d274793c69
+use_safetensors: false
+device: cuda
+threads: 4
+train: data/participant3_demo/train.jsonl.gz
+dev: data/participant3_demo/dev.jsonl.gz
+registry: data/participant3_demo/attribute_registry.json
+output: models/gpu_demo
+fields: [title, description]
+max_train_examples: 30000
+max_attributes: 128
+max_dev_examples: 1200
+max_train_windows: 48000
+max_dev_windows: 1800
+max_length: 192
+stride: 48
+batch_size: 12
+eval_batch_size: 16
+gradient_accumulation: 2
+gradient_checkpointing: true
+mixed_precision: true
+learning_rate: 0.00003
+epochs: 3
+max_steps: 1200
+# Includes model loading and tokenization; checked at optimizer boundaries.
+# Final evaluation and checkpoint writing can take additional time.
+max_seconds: 21600
+save_steps: 200
+eval_steps: 200
+log_steps: 25
+early_stopping_patience: 3
+seed: 42
+allow_overwrite: false

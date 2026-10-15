@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Атлас — характеристики товаров</title>
+<link rel="stylesheet" href="css/atlas.css">
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in">
+    <a class="logo" href="#/catalog" aria-label="Атлас, каталог">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5 9 3.5l6 2 5-2v15l-5 2-6-2-5 2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 3.5v15M15 5.5v15" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span>Атлас</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Разделы"></nav>
+    <div class="bar-tools" id="bar-tools"></div>
+  </div>
+</header>
+<main id="view" tabindex="-1"></main>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<div id="modal" class="modal" hidden></div>
+
+<script src="js/dict.js"></script>
+<script src="js/schema.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/model.js"></script>
+<script src="js/seed.js"></script>
+<script src="js/samples.js"></script>
+<script src="js/approaches.js"></script>
+<script src="js/app.js"></script>
+<script src="js/view-catalog.js"></script>
+<script src="js/view-card.js"></script>
+<script src="js/view-add.js"></script>
+<script src="js/view-stats.js"></script>
+<script src="js/view-dict.js"></script>
+<script src="js/view-approaches.js"></script>
+<script>ATLAS.app.start();</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+/* Default normalization dictionaries. Editable on the «Словари» page; the processing reads them live. */
+window.ATLAS = window.ATLAS || {};
+
+ATLAS.DICT_TYPES = {
+  color: "Цвета",
+  brand: "Бренды",
+  unit: "Единицы измерения",
+  material: "Материалы",
+  synonym: "Синонимы характеристик",
+};
+
+(function () {
+  let n = 0;
+  const e = (type, from, to, extra = {}) => ({ id: "d" + (++n), type, from, to, ...extra });
+  ATLAS.DEFAULT_DICT = [
+    // colors: how it appears in text -> how it is stored in the catalog
+    e("color", "черный, чёрный, black, чёрного, черного", "черный"),
+    e("color", "белый, white, белого, белоснежный", "белый"),
+    e("color", "серебристый, серебро, silver, серебристого", "серебристый"),
+    e("color", "серый, серого, графитовый, графит, grey, gray, space gray", "серый"),
+    e("color", "бежевый, бежевого, beige, песочный", "бежевый"),
+    e("color", "коричневый, шоколадный, brown", "коричневый"),
+    e("color", "синий, синего, тёмно-синий, темно-синий, navy, blue", "синий"),
+    e("color", "голубой, light blue", "голубой"),
+    e("color", "зелёный, зеленый, зелёного, зеленого, green, мятный, оливковый", "зеленый"),
+    e("color", "красный, красного, red, бордовый", "красный"),
+    e("color", "розовый, pink", "розовый"),
+    e("color", "жёлтый, желтый, yellow", "желтый"),
+    e("color", "золотистый, золотистого, золото, gold", "золотистый"),
+    e("color", "бронзовый, бронза, bronze", "бронзовый"),
+    e("color", "прозрачный, transparent, clear", "прозрачный"),
+    e("color", "фиолетовый, purple, лавандовый", "фиолетовый"),
+    e("color", "оранжевый, orange, оранжевого", "оранжевый"),
+
+    // brands and spellings
+    ...[
+      ["Samsung", "Samsung, Самсунг"], ["Apple", "Apple"], ["Xiaomi", "Xiaomi, Сяоми"], ["HONOR", "HONOR, Honor"],
+      ["Huawei", "Huawei, HUAWEI"], ["realme", "realme, Realme"], ["Lenovo", "Lenovo"], ["ASUS", "ASUS, Asus"],
+      ["HP", "HP"], ["Acer", "Acer"], ["MSI", "MSI"], ["LG", "LG"], ["Sony", "Sony, SONY"], ["Haier", "Haier"],
+      ["Hisense", "Hisense"], ["TCL", "TCL"], ["Philips", "Philips"], ["Bosch", "Bosch, BOSCH"],
+      ["Indesit", "Indesit"], ["Beko", "Beko, BEKO"], ["ATLANT", "ATLANT, Атлант"], ["Candy", "Candy"],
+      ["Dyson", "Dyson"], ["Tefal", "Tefal"], ["Kitfort", "Kitfort, KITFORT"], ["Polaris", "Polaris"],
+      ["Redmond", "Redmond, REDMOND"], ["De'Longhi", "De'Longhi, DeLonghi, Delonghi, De Longhi"], ["Krups", "Krups"],
+      ["Askona", "Askona, Аскона"], ["Ormatek", "Ormatek, Орматек"], ["Hoff", "Hoff"], ["Шатура", "Шатура"],
+      ["Citilux", "Citilux"], ["Lightstar", "Lightstar"], ["Eglo", "Eglo, EGLO"], ["Arte Lamp", "Arte Lamp"],
+      ["Grohe", "Grohe, GROHE"], ["Hansgrohe", "Hansgrohe"], ["Lemark", "Lemark"], ["Iddis", "Iddis, IDDIS"],
+      ["Makita", "Makita"], ["DeWalt", "DeWalt, DEWALT"], ["Metabo", "Metabo"], ["Интерскол", "Интерскол"],
+      ["JBL", "JBL"], ["Sennheiser", "Sennheiser"], ["Marshall", "Marshall"], ["Deppa", "Deppa"], ["Spigen", "Spigen"],
+      ["uBear", "uBear"], ["Бюрократ", "Бюрократ"], ["Chairman", "Chairman, CHAIRMAN"], ["Weissgauff", "Weissgauff"],
+    ].map(([to, from]) => e("brand", from, to)),
+
+    // units: variant -> canonical unit, with a factor
+    e("unit", "Вт, W, ватт, ватта", "Вт", { factor: 1 }),
+    e("unit", "кВт, kW", "Вт", { factor: 1000 }),
+    e("unit", "ГБ, Гб, GB, Gb", "ГБ", { factor: 1 }),
+    e("unit", "ТБ, TB", "ГБ", { factor: 1024 }),
+    e("unit", "мАч, mAh, мА·ч", "мАч", { factor: 1 }),
+    e("unit", "дюйм, дюйма, дюймов, \", ″", "″", { factor: 1 }),
+    e("unit", "см, cm", "см", { factor: 1 }),
+    e("unit", "мм, mm", "см", { factor: 0.1 }),
+    e("unit", "м", "см", { factor: 100 }),
+    e("unit", "кг, kg", "кг", { factor: 1 }),
+    e("unit", "г, гр", "кг", { factor: 0.001 }),
+    e("unit", "л, литр, литра, литров, L", "л", { factor: 1 }),
+    e("unit", "мл, ml", "л", { factor: 0.001 }),
+    e("unit", "Гц, Hz", "Гц", { factor: 1 }),
+    e("unit", "бар, bar", "бар", { factor: 1 }),
+    e("unit", "ч, час, часа, часов", "ч", { factor: 1 }),
+    e("unit", "мин, минут", "ч", { factor: 1 / 60 }),
+    e("unit", "В, V, вольт", "В", { factor: 1 }),
+    e("unit", "Н·м, Нм, Н*м", "Н·м", { factor: 1 }),
+    e("unit", "об/мин", "об/мин", { factor: 1 }),
+
+    // materials
+    e("material", "нержавеющая сталь, нержавеющей стали, нерж. сталь, нерж. стали", "нержавеющая сталь"),
+    e("material", "пластик, пластика, пластиковый", "пластик"),
+    e("material", "стекло, стекла, стеклянный, жаропрочное стекло", "стекло"),
+    e("material", "керамика, керамики, керамический", "керамика"),
+    e("material", "латунь, латуни", "латунь"),
+    e("material", "металл, металла, металлический", "металл"),
+    e("material", "алюминий, алюминия", "алюминий"),
+    e("material", "массив дерева, массива, дерево", "массив дерева"),
+    e("material", "МДФ", "МДФ"),
+    e("material", "ЛДСП", "ЛДСП"),
+    e("material", "велюр, велюра", "велюр"),
+    e("material", "рогожка, рогожки", "рогожка"),
+    e("material", "экокожа, эко-кожа, искусственная кожа, экокожи", "экокожа"),
+    e("material", "натуральная кожа, кожа", "натуральная кожа"),
+    e("material", "микрофибра, микрофибры", "микрофибра"),
+    e("material", "шенилл, шенилла", "шенилл"),
+    e("material", "силикон, силикона, силиконовый", "силикон"),
+    e("material", "поликарбонат, поликарбоната", "поликарбонат"),
+    e("material", "сетка, сетчатый, сетки", "сетка"),
+    e("material", "текстиль, ткань", "текстиль"),
+
+    // seller parameter names -> characteristic of the catalog
+    e("synonym", "ОЗУ, RAM, Оперативная память", "Оперативная память"),
+    e("synonym", "Объем встроенной памяти, Встроенная память, ROM, Память", "Встроенная память"),
+    e("synonym", "Диагональ, Диагональ экрана", "Диагональ экрана"),
+    e("synonym", "Емкость аккумулятора, Ёмкость аккумулятора, Батарея", "Ёмкость аккумулятора"),
+    e("synonym", "Цвет, Цвет корпуса, Цвет товара", "Цвет"),
+    e("synonym", "Мощность, Номинальная мощность", "Мощность"),
+    e("synonym", "Объем, Объём, Общий объем, Общий объём", "Объём"),
+    e("synonym", "Производитель, Бренд, Марка", "Бренд"),
+    e("synonym", "Материал корпуса, Корпус", "Материал корпуса"),
+    e("synonym", "Высота", "Высота"),
+    e("synonym", "Ширина", "Ширина"),
+    e("synonym", "Глубина", "Глубина"),
+    e("synonym", "Вес, Масса", "Вес"),
+    e("synonym", "Материал обивки, Обивка", "Материал обивки"),
+    e("synonym", "Максимальная нагрузка, Нагрузка", "Максимальная нагрузка"),
+    e("synonym", "Давление, Давление помпы", "Давление"),
+    e("synonym", "Загрузка, Максимальная загрузка", "Загрузка"),
+    e("synonym", "Тип цоколя, Цоколь", "Тип цоколя"),
+  ];
+})();

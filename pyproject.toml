@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "catalog-ai-participant3"
+version = "0.1.0"
+description = "Participant 3: grounded product attribute token classification"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "pyarrow>=18", "pydantic>=2", "PyYAML>=6", "transformers>=4.51,<5", "safetensors>=0.4", "scikit-learn>=1.5"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

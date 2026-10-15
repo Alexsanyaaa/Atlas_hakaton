@@ -1,0 +1,5 @@
+version: participant3-heuristic-v1
+auto_accept: false
+thresholds: {}
+calibrators: {}
+reason: No human-verified calibration data supplied. Raw token softmax is heuristic.

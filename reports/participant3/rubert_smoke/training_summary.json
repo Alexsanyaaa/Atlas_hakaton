@@ -1,0 +1,16 @@
+{
+  "device": "cpu",
+  "model": "ai-forever/ruBert-base",
+  "model_commit": "05f37a2ca9e333fd18f30cd0c96c68d274793c69",
+  "torch_version": "2.8.0+cpu",
+  "encoder_parameter": "bert.encoder.layer.10.attention.self.query.weight",
+  "encoder_max_abs_change": 0.0008549857884645462,
+  "optimizer_steps": 18,
+  "trainable_parameters": 14178051,
+  "total_parameters": 177719043,
+  "train_encoder_last_n_layers": 2,
+  "elapsed_seconds": 145.3675042060022,
+  "peak_cuda_bytes": null,
+  "evaluation": "silver dev only; not final gold metrics",
+  "checkpoint_selection": "dev silver span F1"
+}

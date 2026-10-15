@@ -1,0 +1,38 @@
+# Full prepared dataset; Radeon RX 9070 / RX 9070 XT, 16 GB, WSL2 Ubuntu 24.04.
+# Uses the existing validated trainer and leaves the demo checkpoint intact.
+model: ai-forever/ruBert-base
+revision: 05f37a2ca9e333fd18f30cd0c96c68d274793c69
+use_safetensors: false
+device: cuda
+precision: fp16
+attn_implementation: eager
+threads: 4
+train: data/participant3_demo/train.jsonl.gz
+dev: data/participant3_demo/dev.jsonl.gz
+registry: data/participant3_demo/attribute_registry.json
+output: models/rx9070xt_full
+fields: [title, description]
+max_train_examples: 157718
+max_attributes: 394
+max_dev_examples: 19005
+max_train_windows: 1000000
+max_dev_windows: 1000000
+max_length: 256
+stride: 64
+batch_size: 8
+eval_batch_size: 8
+gradient_accumulation: 3
+gradient_checkpointing: true
+mixed_precision: true
+learning_rate: 0.00002
+epochs: 3
+# Safety ceilings. Actual step count depends on encoded text windows.
+max_steps: 100000
+max_seconds: 79200
+save_steps: 1000
+eval_steps: 2000
+log_steps: 50
+# Complete all epochs unless time/step limit is reached; keep the best dev model.
+early_stopping_patience: 100000
+seed: 42
+allow_overwrite: false

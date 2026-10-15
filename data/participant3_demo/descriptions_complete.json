@@ -1,0 +1,8 @@
+{
+  "source_sha256": "08af4442a87dd2d0e50d80aae4371b12d72d9f82adfeffeca3c0fff5595bc67d",
+  "rows_read": 1177200,
+  "matched_skus": 22834,
+  "duplicate_rows": 0,
+  "conflicting_descriptions_excluded": 0,
+  "elapsed_seconds": 35.65838251600144
+}

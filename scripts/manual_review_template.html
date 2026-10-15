@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ручная проверка характеристик</title>
+<style>
+body{font:16px/1.5 system-ui,sans-serif;background:#f3f5f8;color:#182130;margin:0}main{max-width:1050px;margin:auto;padding:24px}h1{font-size:26px}button,select,input,textarea{font:inherit}button{padding:8px 12px;cursor:pointer;background:white;border:1px solid #a9b5c5;border-radius:6px;margin:4px}button:hover{background:#e8effa}header{position:sticky;top:0;background:#f3f5f8;padding:10px 0;z-index:1;border-bottom:1px solid #ccd5e1}.box{background:white;padding:18px;margin:16px 0;border-radius:10px;border:1px solid #d9e0e9}.source{white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;background:#f4f7fb;user-select:text}textarea{width:96%;min-height:48px;padding:6px}.muted{color:#526176}small{display:block}label{margin-right:12px}.span{background:#eef4ff;padding:8px;margin:6px 0}.done{color:#17643a}#message{color:#8a3d00}input[type=file]{max-width:250px}.hint{font-size:14px}
+</style>
+<main><h1>Ручная проверка характеристик товаров</h1>
+<p>Проверяйте только текст карточки. Для каждого поля отметьте все значения и все их вхождения либо подтвердите отсутствие. Догадки не добавляйте. Ответы модели здесь скрыты.</p>
+<header><div id="progress"></div><button id="prev">← Назад</button><select id="jump"></select><button id="next">Далее →</button><button id="download">Скачать разметку</button><label>Загрузить разметку <input id="import" type="file" accept=".json"></label><div id="message"></div></header>
+<article id="card"></article><section id="tasks"></section>
+<p class="muted">Разметка из dev: используйте для доработки, не для независимой итоговой оценки и не добавляйте в обучение.</p></main>
+<script>
+'use strict';
+const DATA=/*DATA_PLACEHOLDER*/;
+let tasks=structuredClone(DATA.tasks), index=0, storageAvailable=true;
+const fingerprint=JSON.stringify(DATA.cards.map(c=>[c.product_id,c.title,c.description,c.requested_attributes]));
+const storageKey='catalog-review:'+DATA.dataset_id+':'+fingerprint;
+const $=id=>document.getElementById(id);
+function notify(s){$('message').textContent=s;}
+function validateImport(obj){
+ if(obj.dataset_id!==DATA.dataset_id || !obj.tasks || Object.keys(obj.tasks).sort().join('|')!==Object.keys(DATA.tasks).sort().join('|'))throw Error('Разметка от другого набора или список задач не совпадает.');
+ for(const c of DATA.cards)for(const a of c.requested_attributes){
+  const t=obj.tasks[c.product_id+':'+a];
+  if(!['unreviewed','present','absent','ambiguous'].includes(t.status)||!Array.isArray(t.spans))throw Error('Некорректная задача.');
+  if(t.status==='present'&&!t.spans.length||t.status==='absent'&&t.spans.length)throw Error('Статус не соответствует значениям.');
+  for(const s of t.spans){const text=c[s.field];if(!['title','description'].includes(s.field)||!Number.isInteger(s.start)||!Number.isInteger(s.end)||s.start<0||s.end<=s.start||!text||s.end>Array.from(text).length||Array.from(text).slice(s.start,s.end).join('')!==s.quote)throw Error('Цитата не совпадает с карточкой.');}
+ }
+ return obj.tasks;
+}
+try{const saved=localStorage.getItem(storageKey);if(saved)tasks=validateImport(JSON.parse(saved));}catch(e){storageAvailable=false;notify('Локальное сохранение недоступно или старый файл повреждён. Скачивайте JSON для сохранения прогресса.');}
+function updateProgress(){const v=Object.values(tasks);$('progress').textContent=`Карточка ${index+1}/${DATA.cards.length} · Решено ${v.filter(t=>['present','absent'].includes(t.status)).length}/${v.length} · Неоднозначно ${v.filter(t=>t.status==='ambiguous').length}`;}
+function persist(){if(storageAvailable)try{localStorage.setItem(storageKey,JSON.stringify({dataset_id:DATA.dataset_id,tasks}));}catch(e){storageAvailable=false;notify('Не удалось сохранить в браузере. Скачайте JSON.');}updateProgress();}
+function element(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
+function addSelection(taskId){
+ const selection=window.getSelection();if(!selection||selection.rangeCount!==1||selection.isCollapsed){notify('Сначала выделите точное значение в названии или описании.');return;}
+ const range=selection.getRangeAt(0);let node=range.commonAncestorContainer;if(node.nodeType!==1)node=node.parentElement;
+ const source=node.closest('[data-source]');if(!source||!source.contains(range.startContainer)||!source.contains(range.endContainer)){notify('Выделение должно находиться внутри одного исходного поля.');return;}
+ const prefix=range.cloneRange();prefix.selectNodeContents(source);prefix.setEnd(range.startContainer,range.startOffset);
+ const start=Array.from(prefix.toString()).length,quote=range.toString(),end=start+Array.from(quote).length,field=source.dataset.source;
+ const card=DATA.cards[index];if(Array.from(card[field]).slice(start,end).join('')!==quote||!quote.trim()){notify('Не удалось определить позиции выделения.');return;}
+ const t=tasks[taskId];if(!t.spans.some(s=>s.field===field&&s.start===start&&s.end===end))t.spans.push({field,start,end,quote});t.status='present';persist();renderTasks();notify('Значение добавлено. Добавьте другие значения и повторные вхождения, если они есть.');
+}
+function renderTasks(){
+ const c=DATA.cards[index];$('tasks').replaceChildren();
+ for(const a of c.requested_attributes){
+  const key=c.product_id+':'+a,t=tasks[key],box=element('div',undefined,'box');box.append(element('h3',DATA.attribute_names[a]));
+  const options=[['unreviewed','Не проверено'],['present','Есть значение'],['absent','Отсутствует'],['ambiguous','Неоднозначно']];
+  for(const [value,name] of options){const label=element('label'),radio=document.createElement('input');radio.type='radio';radio.name=key;radio.value=value;radio.checked=t.status===value;radio.onchange=()=>{if(value==='present'&&!t.spans.length){notify('Сначала выделите значение в тексте и добавьте его.');renderTasks();return;}if(value==='absent'&&t.spans.length){notify('Сначала удалите найденные значения, чтобы подтвердить отсутствие.');renderTasks();return;}t.status=value;persist();};label.append(radio,document.createTextNode(name));box.append(label);}
+  const add=element('button','Добавить выделение');add.onmousedown=e=>e.preventDefault();add.onclick=()=>addSelection(key);box.append(add);
+  for(const [i,s] of t.spans.entries()){const line=element('div',`${s.field} [${s.start}, ${s.end}): «${s.quote}»`,'span');const remove=element('button','Удалить');remove.onclick=()=>{t.spans.splice(i,1);if(t.status==='present'&&!t.spans.length)t.status='unreviewed';persist();renderTasks();};line.append(remove);box.append(line);}
+  const note=document.createElement('textarea');note.placeholder='Пояснение или сомнение';note.value=t.note||'';note.oninput=()=>{t.note=note.value;persist();};box.append(note);$('tasks').append(box);
+ }
+}
+function render(){const c=DATA.cards[index];$('card').replaceChildren();$('card').append(element('h2',c.title),element('p',`${c.section_name} → ${c.category_name} · Товар ${c.product_id}`,'muted'));for(const field of ['title','description']){const box=element('div',undefined,'box');box.append(element('strong',field==='title'?'Название':'Описание'));const text=element('div',c[field],'source');text.dataset.source=field;box.append(text);$('card').append(box);}$('jump').value=String(index);$('prev').disabled=index===0;$('next').disabled=index===DATA.cards.length-1;renderTasks();updateProgress();}
+for(const [i,c]of DATA.cards.entries()){const opt=element('option',`${i+1}. ${c.title}`);opt.value=String(i);$('jump').append(opt);}
+$('jump').onchange=()=>{index=Number($('jump').value);render();};$('prev').onclick=()=>{index--;render();};$('next').onclick=()=>{index++;render();};
+$('download').onclick=()=>{const obj={dataset_id:DATA.dataset_id,tasks};try{validateImport(obj);}catch(e){notify(e.message);return;}const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='annotations.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('JSON скачан. Для подсчёта метрик положите его в manual_review/annotations.json.');};
+$('import').onchange=async()=>{try{const file=$('import').files[0];if(!file)return;tasks=validateImport(JSON.parse(await file.text()));persist();render();notify('Разметка загружена.');}catch(e){notify(e.message);}};
+render();
+</script></html>
