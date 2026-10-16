@@ -106,7 +106,7 @@ def train(config):
     torch.manual_seed(seed)
     device = torch.device(config.get('device', 'cuda'))
     if platform.system()=='Windows' and torch.version.hip:
-        raise RuntimeError('Native Windows ROCm 7.2.1 does not support ML training. Run this bundle inside WSL2 Ubuntu; see README_RX9070XT.md.')
+        raise RuntimeError('Native Windows ROCm 7.2.1 does not support ML training. Run this bundle inside WSL2 Ubuntu; see README.md.')
     if device.type == 'cuda' and not torch.cuda.is_available():
         raise RuntimeError('GPU недоступна. Для AMD нужны драйвер AMD и PyTorch ROCm, для NVIDIA — PyTorch CUDA; не CPU wheel.')
     torch.set_num_threads(config.get('threads', 4))
@@ -133,6 +133,14 @@ def train(config):
                       'dev_cap': config['max_dev_examples']}), flush=True)
     records = balanced_records(config['train'], config['max_train_examples'], config['fields'], seed, allowed)
     dev_records = balanced_records(config['dev'], config['max_dev_examples'], config['fields'], seed + 1, allowed)
+    extra_path = config.get('extra_train')
+    if extra_path:
+        with open_text(extra_path) as handle:
+            extra = [json.loads(line) for line in handle if line.strip()]
+        if any(r.get('split') != 'train' for r in extra):
+            raise ValueError('Extra examples must be training examples, never dev/challenge/test')
+        extra = [r for r in extra if r['field'] in config['fields'] and r['attribute_id'] in allowed]
+        records.extend(extra * int(config.get('extra_train_repeats', 1)))
     if {r['group_id'] for r in records} & {r['group_id'] for r in dev_records}:
         raise ValueError('Train/dev group leakage')
     load = {'trust_remote_code': False, 'revision': config.get('revision')}
@@ -160,17 +168,26 @@ def train(config):
     dump_json(output/'data_manifest.json', {
         'train_sha256': file_hash(config['train']), 'dev_sha256': file_hash(config['dev']),
         'registry_sha256': file_hash(config['registry']), 'train_windows': len(features), 'dev_windows': len(dev),
+        'extra_train_sha256': file_hash(extra_path) if extra_path else None,
+        'extra_train_repeats': config.get('extra_train_repeats', 1) if extra_path else 0,
+        'dataset_supervision': config.get('dataset_supervision', 'silver_catalog_alignment'),
         'train_examples_by_attribute': support, 'test_used': False,
         'annotation_mode': 'attribute_conditioned_BIO', 'supervision': 'silver_catalog_alignment',
         'train_product_ids': sorted({f['record']['product_id'] for f in features}),
         'dev_product_ids': sorted({f['record']['product_id'] for f in dev})})
     name, encoder = next((n, p) for n, p in model.named_parameters() if 'attention.self.query.weight' in n)
     initial = encoder.detach().cpu().clone()
-    optimizer = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=0.01)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=config.get('weight_decay', 0.01))
     amp = device.type == 'cuda' and config.get('mixed_precision', True)
     dtype = torch.bfloat16 if config.get('precision') == 'bf16' else torch.float16
     scaler = torch.amp.GradScaler('cuda', enabled=amp and dtype == torch.float16)
     max_steps = optimizer_step_limit(config, len(features))
+    scheduler = None
+    if config.get('scheduler'):
+        from transformers import get_scheduler
+        scheduler = get_scheduler(config['scheduler'], optimizer=optimizer,
+                                  num_warmup_steps=int(max_steps * config.get('warmup_ratio', 0.0)),
+                                  num_training_steps=max_steps)
     max_seconds = config['max_seconds']
     accum, batch_size = config['gradient_accumulation'], config['batch_size']
     best, step, bad, last_eval = -1.0, 0, 0, -1
@@ -188,7 +205,8 @@ def train(config):
             'base_model': config['model'], 'base_revision': config.get('revision'),
             'attribute_queries': task_queries, 'train_examples_by_attribute': support,
             'fields': config['fields'], 'max_length': config['max_length'], 'stride': config['stride'],
-            'optimizer_steps': step, 'requires_human_review': True, 'calibrated': False})
+            'optimizer_steps': step, 'requires_human_review': True, 'calibrated': False,
+            'extra_train': extra_path, 'dataset_supervision': config.get('dataset_supervision', 'silver_catalog_alignment')})
 
     def validate():
         nonlocal best, bad, last_eval
@@ -198,7 +216,7 @@ def train(config):
                  'precision': metrics['precision'], 'recall': metrics['recall'], 'support': metrics['support']}
         history.append(event)
         print(json.dumps(event), flush=True)
-        if score > best:
+        if score > best + config.get('early_stopping_min_delta', 0.0):
             best, bad = score, 0
             save(output/'checkpoint')
             dump_json(output/'best_metrics.json', metrics)
@@ -210,6 +228,8 @@ def train(config):
         last_eval = step
         model.train()
 
+    if config.get('evaluate_before', False):
+        validate()  # retain starting weights if every subsequent epoch is worse
     optimizer.zero_grad(set_to_none=True)
     training_started = time.monotonic()
     stop = False
@@ -233,13 +253,17 @@ def train(config):
                     continue
                 scaler.unscale_(optimizer)
                 torch.nn.utils.clip_grad_norm_(model.parameters(), 1.)
+                previous_scale = scaler.get_scale()
                 scaler.step(optimizer)
                 scaler.update()
+                if scheduler is not None and scaler.get_scale() >= previous_scale:
+                    scheduler.step()
                 optimizer.zero_grad(set_to_none=True)
                 step += 1
                 if step % config.get('log_steps',25) == 0:
                     elapsed = time.monotonic()-training_started
                     print(json.dumps({'event':'train','epoch':epoch+1,'step':step,'loss':float(result.loss.detach()),
+                                      'learning_rate': optimizer.param_groups[0]['lr'],
                                       'elapsed_seconds':round(time.monotonic()-started,1),
                                       'estimated_remaining_seconds':round((max_steps-step)*elapsed/step),
                                       'peak_vram_gb':torch.cuda.max_memory_allocated()/2**30 if device.type=='cuda' else None}),flush=True)
@@ -288,7 +312,7 @@ def train(config):
 def main():
     import yaml
     p=argparse.ArgumentParser()
-    p.add_argument('--config',type=Path,default=Path('configs/rx9070xt_demo.yaml'))
+    p.add_argument('--config',type=Path,default=Path('configs/rx9070xt_full.yaml'))
     a=p.parse_args()
     train(yaml.safe_load(a.config.read_text(encoding='utf-8')))
 

@@ -38,5 +38,5 @@ python3.12 -m venv .venv-wsl
  'https://repo.radeon.com/rocm/manylinux/rocm-rel-7.2.1/triton-3.5.1%2Brocm7.2.1.gita272dfa8-cp312-cp312-linux_x86_64.whl'
 .venv-wsl/bin/python -m pip install -r requirements-transformer-demo.txt
 .venv-wsl/bin/python check_gpu.py
-.venv-wsl/bin/python verify_training_bundle.py
-echo 'Ready. Train with: bash scripts/run_rx9070xt_wsl.sh'
+.venv-wsl/bin/python verify_refinement_bundle.py
+echo 'Ready. Train with: bash scripts/run_refinement_wsl.sh --variant D'

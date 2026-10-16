@@ -13,7 +13,7 @@ sys.path.insert(0,str(ROOT/'src'))
 def main():
     from catalog_ai.extractors.transformer import TransformerExtractor
     p=argparse.ArgumentParser()
-    p.add_argument('--checkpoint',default='models/rx9070xt_demo/checkpoint')
+    p.add_argument('--checkpoint',default='models/transformer/checkpoint')
     p.add_argument('--input',default='data/participant3_demo/demo_cards.jsonl')
     p.add_argument('--output',default='outputs/demo_predictions.jsonl')
     p.add_argument('--attributes',nargs='+',default=['brand','model','color'])

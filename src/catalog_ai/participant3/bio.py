@@ -91,10 +91,20 @@ def encode_records(records, tokenizer, max_length=128, stride=32):
                 continue
             lo, hi = visible[0][0], visible[-1][1]
             spans = [s for s in record["spans"] if lo <= s["start"] and s["end"] <= hi]
-            if not spans:
+            complete = record.get('annotation_complete') is True
+            if not spans and not complete:
                 continue  # no invented negative windows from incomplete annotations
-            labels = token_labels(offsets, seq_ids, spans)
-            if 1 not in labels:
+            # Include crossing annotations when assigning ignored tokens. A
+            # span cut by a window boundary must never become background O.
+            labels = token_labels(offsets, seq_ids, record['spans'])
+            crossing = [s for s in record['spans'] if s not in spans
+                        and s['start'] < hi and lo < s['end']]
+            for j, ((a, b), seq) in enumerate(zip(offsets, seq_ids)):
+                if seq == 1 and any(a < s['end'] and s['start'] < b for s in crossing):
+                    labels[j] = -100
+            if 1 not in labels and not complete:
+                continue
+            if not any(label != -100 for label in labels):
                 continue
             inputs = {key: encoded[key][i] for key in tokenizer.model_input_names if key in encoded}
             features.append({"inputs": inputs, "labels": labels, "offsets": offsets,

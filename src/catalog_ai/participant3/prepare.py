@@ -44,7 +44,12 @@ def attribute_for_name(name: str) -> str | None:
         return "model"
     if name in {"цвет", "цвет корпуса", "основной цвет"}:
         return "color"
-    if re.search(r"оперативн.*памят|объем озу", name):
+    if 'оперативн' in name and 'встроенн' in name:
+        return None
+    # RAM technology, a maximum supported capacity and a combined RAM/ROM
+    # facet are different attributes from the installed RAM capacity.
+    if re.search(r"оперативн.*памят|объем озу", name) and not re.search(
+            r"тип|стандарт|частот|максималь|встроенн|слот|канал", name):
         return "ram_gb"
     if re.search(r"(?:встроенн.*памят|объем.*(?:ssd|hdd|накопител))", name):
         return "storage_gb"

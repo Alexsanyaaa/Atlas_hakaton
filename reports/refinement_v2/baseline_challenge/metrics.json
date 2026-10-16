@@ -1,0 +1,128 @@
+{
+  "tp": 9,
+  "fp": 14,
+  "fn": 3,
+  "support": 12,
+  "precision": 0.391304347826087,
+  "recall": 0.75,
+  "f1": 0.5142857142857142,
+  "per_attribute": {
+    "brand": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "support": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "color": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 1,
+      "support": 3,
+      "precision": 0.5,
+      "recall": 0.6666666666666666,
+      "f1": 0.5714285714285714
+    },
+    "cpu": {
+      "tp": 0,
+      "fp": 4,
+      "fn": 1,
+      "support": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "model": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 1,
+      "support": 2,
+      "precision": 0.2,
+      "recall": 0.5,
+      "f1": 0.2857142857142857
+    },
+    "ram_gb": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 0,
+      "support": 2,
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666
+    },
+    "screen_inches": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0
+    },
+    "storage_gb": {
+      "tp": 2,
+      "fp": 1,
+      "fn": 0,
+      "support": 2,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8
+    }
+  },
+  "loss": 0.20658803700158992,
+  "examples": 23,
+  "evaluation_kind": "agent_authored_synthetic_challenge_exact_span",
+  "not_human_gold": true,
+  "not_full_card_attribute_metric": true,
+  "human_gold": false,
+  "tasks": 23,
+  "negative_tasks": 14,
+  "false_positive_negative_tasks": 8,
+  "elapsed_seconds": 18.07993375299975,
+  "checkpoint": "full-4164ed19-ddeb-4aaa-a8ee-c21c7d2d4ebc/checkpoint",
+  "test_used": false,
+  "threshold_sweep": [
+    {
+      "threshold": 0,
+      "tp": 9,
+      "fp": 14,
+      "fn": 3,
+      "support": 12,
+      "precision": 0.391304347826087,
+      "recall": 0.75,
+      "f1": 0.5142857142857142
+    },
+    {
+      "threshold": 0.8,
+      "tp": 8,
+      "fp": 8,
+      "fn": 4,
+      "support": 12,
+      "precision": 0.5,
+      "recall": 0.6666666666666666,
+      "f1": 0.5714285714285714
+    },
+    {
+      "threshold": 0.95,
+      "tp": 8,
+      "fp": 3,
+      "fn": 4,
+      "support": 12,
+      "precision": 0.7272727272727273,
+      "recall": 0.6666666666666666,
+      "f1": 0.6956521739130435
+    },
+    {
+      "threshold": 0.99,
+      "tp": 8,
+      "fp": 1,
+      "fn": 4,
+      "support": 12,
+      "precision": 0.8888888888888888,
+      "recall": 0.6666666666666666,
+      "f1": 0.7619047619047619
+    }
+  ]
+}

@@ -1,5 +1,0 @@
-/etc/amdgpu-install/amdgpu-setup.conf
-/etc/apt/keyrings/rocm.gpg
-/etc/apt/preferences.d/repo-radeon-pin-600
-/etc/apt/sources.list.d/amdgpu.list
-/etc/apt/sources.list.d/rocm.list

@@ -1,0 +1,97 @@
+The tokenizer you are loading from 'full-4164ed19-ddeb-4aaa-a8ee-c21c7d2d4ebc/checkpoint' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+{"event": "reproduce_gold", "records": 0}
+{"event": "reproduce_gold", "records": 3000}
+{"event": "reproduce_gold", "records": 6000}
+{"event": "reproduce_gold", "records": 9000}
+{"event": "reproduce_gold", "records": 12000}
+{"event": "reproduce_gold", "records": 15000}
+{"event": "reproduce_gold", "records": 18000}
+{
+  "reproduced_best_metrics": {
+    "tp": 20119,
+    "fp": 1263,
+    "fn": 1195,
+    "support": 21314,
+    "precision": 0.9409316247310823,
+    "recall": 0.9439335647930938,
+    "f1": 0.9424302042345887
+  },
+  "encoded_windows": 20157,
+  "error_tasks": 1224,
+  "error_types": {
+    "extra_or_missing": 465,
+    "boundary_or_partial": 759
+  },
+  "suspect_label_tasks": 105,
+  "threshold_variants": {
+    "balanced_review": {
+      "threshold": 0.5830544829368591,
+      "selected": 10112,
+      "precision": 0.964003164556962,
+      "recall": 0.9347909474491753,
+      "f1": 0.949172346640701,
+      "candidate_coverage": 0.968026038675091,
+      "precision_wilson_lower": 0.9601925144671141,
+      "diagnostic_check": {
+        "tp": 10160,
+        "fp": 424,
+        "fn": 726,
+        "support": 10886,
+        "precision": 0.9599395313681028,
+        "recall": 0.933308837038398,
+        "f1": 0.9464368886818817
+      },
+      "automatic_acceptance": false
+    },
+    "precision95_review": {
+      "threshold": 0.5308374762535095,
+      "selected": 10278,
+      "precision": 0.9542712589998054,
+      "recall": 0.9405446873801304,
+      "f1": 0.9473582536462861,
+      "candidate_coverage": 0.983917288914417,
+      "precision_wilson_lower": 0.9500601050579615,
+      "diagnostic_check": {
+        "tp": 10217,
+        "fp": 537,
+        "fn": 669,
+        "support": 10886,
+        "precision": 0.9500650920587689,
+        "recall": 0.9385449200808378,
+        "f1": 0.9442698706099815
+      },
+      "automatic_acceptance": false
+    },
+    "precision98_review": {
+      "threshold": 0.9035671353340149,
+      "selected": 9408,
+      "precision": 0.9828869047619048,
+      "recall": 0.8867472190257001,
+      "f1": 0.9323452308933252,
+      "candidate_coverage": 0.9006318207926479,
+      "precision_wilson_lower": 0.9800622014528917,
+      "diagnostic_check": {
+        "tp": 9581,
+        "fp": 170,
+        "fn": 1305,
+        "support": 10886,
+        "precision": 0.9825658906778791,
+        "recall": 0.8801212566599302,
+        "f1": 0.928526433105587
+      },
+      "automatic_acceptance": false
+    }
+  },
+  "verification": "silver_only",
+  "human_verified": false,
+  "automatic_acceptance": false,
+  "calibrated": false,
+  "test_used": false,
+  "partition": "group hash mod2 within already-used dev",
+  "limitations": [
+    "positive-conditioned windows only; absence not evaluated",
+    "checkpoint selected on this dev; diagnostic split is not independent",
+    "thresholds refer to old best weights and original labels; refit after retraining",
+    "no guarantee of 95/98% precision on real traffic"
+  ]
+}

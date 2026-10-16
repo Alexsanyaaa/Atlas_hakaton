@@ -1,0 +1,851 @@
+{
+  "reproduced_best_metrics": {
+    "tp": 20119,
+    "fp": 1263,
+    "fn": 1195,
+    "support": 21314,
+    "precision": 0.9409316247310823,
+    "recall": 0.9439335647930938,
+    "f1": 0.9424302042345887
+  },
+  "encoded_windows": 20157,
+  "error_tasks": 1224,
+  "error_types": {
+    "extra_or_missing": 465,
+    "boundary_or_partial": 759
+  },
+  "suspect_label_tasks": 105,
+  "threshold_variants": {
+    "balanced_review": {
+      "threshold": 0.5830544829368591,
+      "selected": 10112,
+      "precision": 0.964003164556962,
+      "recall": 0.9347909474491753,
+      "f1": 0.949172346640701,
+      "candidate_coverage": 0.968026038675091,
+      "precision_wilson_lower": 0.9601925144671141,
+      "diagnostic_check": {
+        "tp": 10160,
+        "fp": 424,
+        "fn": 726,
+        "support": 10886,
+        "precision": 0.9599395313681028,
+        "recall": 0.933308837038398,
+        "f1": 0.9464368886818817
+      },
+      "automatic_acceptance": false
+    },
+    "precision95_review": {
+      "threshold": 0.5308374762535095,
+      "selected": 10278,
+      "precision": 0.9542712589998054,
+      "recall": 0.9405446873801304,
+      "f1": 0.9473582536462861,
+      "candidate_coverage": 0.983917288914417,
+      "precision_wilson_lower": 0.9500601050579615,
+      "diagnostic_check": {
+        "tp": 10217,
+        "fp": 537,
+        "fn": 669,
+        "support": 10886,
+        "precision": 0.9500650920587689,
+        "recall": 0.9385449200808378,
+        "f1": 0.9442698706099815
+      },
+      "automatic_acceptance": false
+    },
+    "precision98_review": {
+      "threshold": 0.9035671353340149,
+      "selected": 9408,
+      "precision": 0.9828869047619048,
+      "recall": 0.8867472190257001,
+      "f1": 0.9323452308933252,
+      "candidate_coverage": 0.9006318207926479,
+      "precision_wilson_lower": 0.9800622014528917,
+      "diagnostic_check": {
+        "tp": 9581,
+        "fp": 170,
+        "fn": 1305,
+        "support": 10886,
+        "precision": 0.9825658906778791,
+        "recall": 0.8801212566599302,
+        "f1": 0.928526433105587
+      },
+      "automatic_acceptance": false
+    }
+  },
+  "per_attribute_exploratory": {
+    "brand": {
+      "threshold": 0.5516185164451599,
+      "selected": 3324,
+      "precision": 0.9957882069795427,
+      "recall": 0.9942925803544608,
+      "f1": 0.9950398316548925,
+      "candidate_coverage": 0.9987980769230769,
+      "precision_wilson_lower": 0.9929423125666443,
+      "diagnostic_check": {
+        "tp": 3410,
+        "fp": 15,
+        "fn": 23,
+        "support": 3433,
+        "precision": 0.9956204379562044,
+        "recall": 0.9933003204194581,
+        "f1": 0.994459025955089
+      }
+    },
+    "catalog_08ec555c4be6": {
+      "threshold": 0.8187728524208069,
+      "selected": 25,
+      "precision": 0.96,
+      "recall": 0.8888888888888888,
+      "f1": 0.9230769230769231,
+      "candidate_coverage": 0.9259259259259259,
+      "precision_wilson_lower": 0.8045552759497747,
+      "diagnostic_check": {
+        "tp": 25,
+        "fp": 1,
+        "fn": 5,
+        "support": 30,
+        "precision": 0.9615384615384616,
+        "recall": 0.8333333333333334,
+        "f1": 0.8928571428571429
+      }
+    },
+    "catalog_099923fa0262": {
+      "threshold": 0.8596799373626709,
+      "selected": 41,
+      "precision": 0.975609756097561,
+      "recall": 0.975609756097561,
+      "f1": 0.975609756097561,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.8740465298832191,
+      "diagnostic_check": {
+        "tp": 54,
+        "fp": 1,
+        "fn": 1,
+        "support": 55,
+        "precision": 0.9818181818181818,
+        "recall": 0.9818181818181818,
+        "f1": 0.9818181818181818
+      }
+    },
+    "catalog_0ec8d46de376": {
+      "threshold": 0.5830544829368591,
+      "selected": 107,
+      "precision": 0.9906542056074766,
+      "recall": 0.9724770642201835,
+      "f1": 0.9814814814814815,
+      "candidate_coverage": 0.9727272727272728,
+      "precision_wilson_lower": 0.9489493946110185,
+      "diagnostic_check": {
+        "tp": 63,
+        "fp": 0,
+        "fn": 5,
+        "support": 68,
+        "precision": 1.0,
+        "recall": 0.9264705882352942,
+        "f1": 0.9618320610687023
+      }
+    },
+    "catalog_18abb6232424": {
+      "threshold": 0.9997910857200623,
+      "selected": 25,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.8668035060468212,
+      "diagnostic_check": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 1,
+        "support": 10,
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1": 0.9473684210526315
+      }
+    },
+    "catalog_22f691540785": {
+      "threshold": 0.9993088245391846,
+      "selected": 39,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.910330146399761,
+      "diagnostic_check": {
+        "tp": 36,
+        "fp": 0,
+        "fn": 0,
+        "support": 36,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "catalog_27d5c32a71c4": {
+      "threshold": 0.734565258026123,
+      "selected": 56,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.9358038555118847,
+      "diagnostic_check": {
+        "tp": 46,
+        "fp": 0,
+        "fn": 0,
+        "support": 46,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "catalog_2beb917191b4": {
+      "threshold": 0.999826967716217,
+      "selected": 68,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.9465268034119507,
+      "diagnostic_check": {
+        "tp": 39,
+        "fp": 0,
+        "fn": 3,
+        "support": 42,
+        "precision": 1.0,
+        "recall": 0.9285714285714286,
+        "f1": 0.9629629629629629
+      }
+    },
+    "catalog_38c55cba4ec9": {
+      "threshold": 0.671284019947052,
+      "selected": 26,
+      "precision": 0.9615384615384616,
+      "recall": 1.0,
+      "f1": 0.9803921568627451,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.8110682300804161,
+      "diagnostic_check": {
+        "tp": 6,
+        "fp": 0,
+        "fn": 0,
+        "support": 6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "catalog_4736b4621775": {
+      "threshold": 0.9830647110939026,
+      "selected": 158,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.9762632104477463,
+      "diagnostic_check": {
+        "tp": 157,
+        "fp": 0,
+        "fn": 0,
+        "support": 157,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "catalog_4bb973f2f752": {
+      "threshold": 0.5858842730522156,
+      "selected": 145,
+      "precision": 0.9448275862068966,
+      "recall": 0.8896103896103896,
+      "f1": 0.9163879598662207,
+      "candidate_coverage": 0.9415584415584416,
+      "precision_wilson_lower": 0.8949116184853204,
+      "diagnostic_check": {
+        "tp": 134,
+        "fp": 5,
+        "fn": 10,
+        "support": 144,
+        "precision": 0.9640287769784173,
+        "recall": 0.9305555555555556,
+        "f1": 0.9469964664310954
+      }
+    },
+    "catalog_4f999aa7a1f8": {
+      "threshold": 0.7146368622779846,
+      "selected": 100,
+      "precision": 0.99,
+      "recall": 0.9705882352941176,
+      "f1": 0.9801980198019802,
+      "candidate_coverage": 0.970873786407767,
+      "precision_wilson_lower": 0.9455124752390653,
+      "diagnostic_check": {
+        "tp": 99,
+        "fp": 0,
+        "fn": 0,
+        "support": 99,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "catalog_5818bb91a533": {
+      "threshold": 0.5570806264877319,
+      "selected": 55,
+      "precision": 0.9818181818181818,
+      "recall": 0.9642857142857143,
+      "f1": 0.972972972972973,
+      "candidate_coverage": 0.9821428571428571,
+      "precision_wilson_lower": 0.9039399953951678,
+      "diagnostic_check": {
+        "tp": 63,
+        "fp": 8,
+        "fn": 9,
+        "support": 72,
+        "precision": 0.8873239436619719,
+        "recall": 0.875,
+        "f1": 0.8811188811188811
+      }
+    },
+    "catalog_5b5ef1407a29": {
+      "threshold": 0.7008544206619263,
+      "selected": 39,
+      "precision": 0.9743589743589743,
+      "recall": 0.9047619047619048,
+      "f1": 0.9382716049382716,
+      "candidate_coverage": 0.9512195121951219,
+      "precision_wilson_lower": 0.8681871352137286,
+      "diagnostic_check": {
+        "tp": 28,
+        "fp": 3,
+        "fn": 5,
+        "support": 33,
+        "precision": 0.9032258064516129,
+        "recall": 0.8484848484848485,
+        "f1": 0.875
+      }
+    },
+    "catalog_5d2c24d0a84f": {
+      "threshold": 0.8526378870010376,
+      "selected": 27,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.8754409628553642,
+      "diagnostic_check": {
+        "tp": 4,
+        "fp": 1,
+        "fn": 3,
+        "support": 7,
+        "precision": 0.8,
+        "recall": 0.5714285714285714,
+        "f1": 0.6666666666666666
+      }
+    },
+    "catalog_615d51878765": {
+      "threshold": 0.6912316679954529,
+      "selected": 33,
+      "precision": 0.8484848484848485,
+      "recall": 0.6363636363636364,
+      "f1": 0.7272727272727273,
+      "candidate_coverage": 0.7333333333333333,
+      "precision_wilson_lower": 0.6907978686153953,
+      "diagnostic_check": {
+        "tp": 26,
+        "fp": 4,
+        "fn": 12,
+        "support": 38,
+        "precision": 0.8666666666666667,
+        "recall": 0.6842105263157895,
+        "f1": 0.7647058823529411
+      }
+    },
+    "catalog_70037e0eea40": {
+      "threshold": 0.8615163564682007,
+      "selected": 22,
+      "precision": 0.9545454545454546,
+      "recall": 0.84,
+      "f1": 0.8936170212765957,
+      "candidate_coverage": 0.88,
+      "precision_wilson_lower": 0.7820151050048196,
+      "diagnostic_check": {
+        "tp": 26,
+        "fp": 2,
+        "fn": 5,
+        "support": 31,
+        "precision": 0.9285714285714286,
+        "recall": 0.8387096774193549,
+        "f1": 0.8813559322033898
+      }
+    },
+    "catalog_85f95885541f": {
+      "threshold": 0.8404126763343811,
+      "selected": 83,
+      "precision": 1.0,
+      "recall": 0.9325842696629213,
+      "f1": 0.9651162790697675,
+      "candidate_coverage": 0.9764705882352941,
+      "precision_wilson_lower": 0.9557631365612794,
+      "diagnostic_check": {
+        "tp": 73,
+        "fp": 0,
+        "fn": 6,
+        "support": 79,
+        "precision": 1.0,
+        "recall": 0.9240506329113924,
+        "f1": 0.9605263157894737
+      }
+    },
+    "catalog_8c7446638994": {
+      "threshold": 0.9997860789299011,
+      "selected": 33,
+      "precision": 1.0,
+      "recall": 0.9705882352941176,
+      "f1": 0.9850746268656716,
+      "candidate_coverage": 0.9705882352941176,
+      "precision_wilson_lower": 0.8957265699643882,
+      "diagnostic_check": {
+        "tp": 27,
+        "fp": 0,
+        "fn": 8,
+        "support": 35,
+        "precision": 1.0,
+        "recall": 0.7714285714285715,
+        "f1": 0.8709677419354839
+      }
+    },
+    "catalog_9481c5ff79e6": {
+      "threshold": 0.6273109912872314,
+      "selected": 19,
+      "precision": 0.9473684210526315,
+      "recall": 0.6206896551724138,
+      "f1": 0.75,
+      "candidate_coverage": 0.7916666666666666,
+      "precision_wilson_lower": 0.7536078466345479,
+      "diagnostic_check": {
+        "tp": 30,
+        "fp": 5,
+        "fn": 8,
+        "support": 38,
+        "precision": 0.8571428571428571,
+        "recall": 0.7894736842105263,
+        "f1": 0.821917808219178
+      }
+    },
+    "catalog_9c874016a55d": {
+      "threshold": 0.9987688660621643,
+      "selected": 28,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.8793527963418923,
+      "diagnostic_check": {
+        "tp": 60,
+        "fp": 0,
+        "fn": 3,
+        "support": 63,
+        "precision": 1.0,
+        "recall": 0.9523809523809523,
+        "f1": 0.975609756097561
+      }
+    },
+    "catalog_9efdb600a692": {
+      "threshold": 0.7373607158660889,
+      "selected": 55,
+      "precision": 0.9818181818181818,
+      "recall": 0.9642857142857143,
+      "f1": 0.972972972972973,
+      "candidate_coverage": 0.9821428571428571,
+      "precision_wilson_lower": 0.9039399953951678,
+      "diagnostic_check": {
+        "tp": 63,
+        "fp": 8,
+        "fn": 9,
+        "support": 72,
+        "precision": 0.8873239436619719,
+        "recall": 0.875,
+        "f1": 0.8811188811188811
+      }
+    },
+    "catalog_a23b7964a3b1": {
+      "threshold": 0.6387959122657776,
+      "selected": 82,
+      "precision": 0.9878048780487805,
+      "recall": 0.9310344827586207,
+      "f1": 0.9585798816568047,
+      "candidate_coverage": 0.9534883720930233,
+      "precision_wilson_lower": 0.9341050148733268,
+      "diagnostic_check": {
+        "tp": 112,
+        "fp": 11,
+        "fn": 11,
+        "support": 123,
+        "precision": 0.9105691056910569,
+        "recall": 0.9105691056910569,
+        "f1": 0.9105691056910569
+      }
+    },
+    "catalog_a24cbdca8d3d": {
+      "threshold": 0.6187253594398499,
+      "selected": 681,
+      "precision": 0.8502202643171806,
+      "recall": 0.7375796178343949,
+      "f1": 0.7899045020463847,
+      "candidate_coverage": 0.85125,
+      "precision_wilson_lower": 0.8214564221708738,
+      "diagnostic_check": {
+        "tp": 658,
+        "fp": 125,
+        "fn": 222,
+        "support": 880,
+        "precision": 0.8403575989782887,
+        "recall": 0.7477272727272727,
+        "f1": 0.7913409500901984
+      }
+    },
+    "catalog_bce6418d68f3": {
+      "threshold": 0.7547646164894104,
+      "selected": 101,
+      "precision": 0.9603960396039604,
+      "recall": 0.97,
+      "f1": 0.9651741293532339,
+      "candidate_coverage": 0.9619047619047619,
+      "precision_wilson_lower": 0.902559363014262,
+      "diagnostic_check": {
+        "tp": 85,
+        "fp": 0,
+        "fn": 4,
+        "support": 89,
+        "precision": 1.0,
+        "recall": 0.9550561797752809,
+        "f1": 0.9770114942528736
+      }
+    },
+    "catalog_e5ef7ad11a9c": {
+      "threshold": 0.9759113192558289,
+      "selected": 41,
+      "precision": 0.975609756097561,
+      "recall": 0.9090909090909091,
+      "f1": 0.9411764705882353,
+      "candidate_coverage": 0.9318181818181818,
+      "precision_wilson_lower": 0.8740465298832191,
+      "diagnostic_check": {
+        "tp": 48,
+        "fp": 0,
+        "fn": 2,
+        "support": 50,
+        "precision": 1.0,
+        "recall": 0.96,
+        "f1": 0.9795918367346939
+      }
+    },
+    "catalog_f308f74704b2": {
+      "threshold": 0.9922226071357727,
+      "selected": 42,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.916198387490838,
+      "diagnostic_check": {
+        "tp": 49,
+        "fp": 2,
+        "fn": 3,
+        "support": 52,
+        "precision": 0.9607843137254902,
+        "recall": 0.9423076923076923,
+        "f1": 0.9514563106796117
+      }
+    },
+    "catalog_f349a43720ea": {
+      "threshold": 0.9995025396347046,
+      "selected": 28,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.8793527963418923,
+      "diagnostic_check": {
+        "tp": 27,
+        "fp": 0,
+        "fn": 2,
+        "support": 29,
+        "precision": 1.0,
+        "recall": 0.9310344827586207,
+        "f1": 0.9642857142857143
+      }
+    },
+    "catalog_f51f824e1ab9": {
+      "threshold": 0.9997637867927551,
+      "selected": 54,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.9335841332189981,
+      "diagnostic_check": {
+        "tp": 45,
+        "fp": 0,
+        "fn": 1,
+        "support": 46,
+        "precision": 1.0,
+        "recall": 0.9782608695652174,
+        "f1": 0.989010989010989
+      }
+    },
+    "catalog_f55983d699df": {
+      "threshold": 0.7471674680709839,
+      "selected": 93,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.9603310973796384,
+      "diagnostic_check": {
+        "tp": 75,
+        "fp": 0,
+        "fn": 7,
+        "support": 82,
+        "precision": 1.0,
+        "recall": 0.9146341463414634,
+        "f1": 0.9554140127388535
+      }
+    },
+    "catalog_fc00c29343ba": {
+      "threshold": 0.9805339574813843,
+      "selected": 35,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.9010957324106112,
+      "diagnostic_check": {
+        "tp": 37,
+        "fp": 0,
+        "fn": 5,
+        "support": 42,
+        "precision": 1.0,
+        "recall": 0.8809523809523809,
+        "f1": 0.9367088607594937
+      }
+    },
+    "catalog_fc11bfa6f622": {
+      "threshold": 0.5159163475036621,
+      "selected": 86,
+      "precision": 0.9302325581395349,
+      "recall": 0.9302325581395349,
+      "f1": 0.9302325581395349,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.856036858257224,
+      "diagnostic_check": {
+        "tp": 86,
+        "fp": 15,
+        "fn": 13,
+        "support": 99,
+        "precision": 0.8514851485148515,
+        "recall": 0.8686868686868687,
+        "f1": 0.86
+      }
+    },
+    "catalog_fc4138cc1d37": {
+      "threshold": 0.9983351826667786,
+      "selected": 92,
+      "precision": 1.0,
+      "recall": 0.989247311827957,
+      "f1": 0.9945945945945946,
+      "candidate_coverage": 0.968421052631579,
+      "precision_wilson_lower": 0.9599171967079013,
+      "diagnostic_check": {
+        "tp": 108,
+        "fp": 0,
+        "fn": 7,
+        "support": 115,
+        "precision": 1.0,
+        "recall": 0.9391304347826087,
+        "f1": 0.968609865470852
+      }
+    },
+    "color": {
+      "threshold": 0.5858244299888611,
+      "selected": 402,
+      "precision": 0.9776119402985075,
+      "recall": 0.9097222222222222,
+      "f1": 0.9424460431654677,
+      "candidate_coverage": 0.9095022624434389,
+      "precision_wilson_lower": 0.9580040759303614,
+      "diagnostic_check": {
+        "tp": 388,
+        "fp": 9,
+        "fn": 40,
+        "support": 428,
+        "precision": 0.9773299748110831,
+        "recall": 0.9065420560747663,
+        "f1": 0.9406060606060606
+      }
+    },
+    "model": {
+      "threshold": 0.5128200054168701,
+      "selected": 2292,
+      "precision": 0.9458987783595113,
+      "recall": 0.9397485912440399,
+      "f1": 0.9428136551424222,
+      "candidate_coverage": 0.9887834339948232,
+      "precision_wilson_lower": 0.935869025765178,
+      "diagnostic_check": {
+        "tp": 2234,
+        "fp": 158,
+        "fn": 157,
+        "support": 2391,
+        "precision": 0.9339464882943144,
+        "recall": 0.9343370974487663,
+        "f1": 0.9341417520384696
+      }
+    },
+    "storage_gb": {
+      "threshold": 0.9993185997009277,
+      "selected": 25,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "candidate_coverage": 1.0,
+      "precision_wilson_lower": 0.8668035060468212,
+      "diagnostic_check": {
+        "tp": 27,
+        "fp": 0,
+        "fn": 13,
+        "support": 40,
+        "precision": 1.0,
+        "recall": 0.675,
+        "f1": 0.8059701492537313
+      }
+    }
+  },
+  "threshold_sweep_silver": [
+    {
+      "threshold": 0,
+      "tp": 20119,
+      "fp": 1263,
+      "fn": 1195,
+      "support": 21314,
+      "precision": 0.9409316247310823,
+      "recall": 0.9439335647930938,
+      "f1": 0.9424302042345887
+    },
+    {
+      "threshold": 0.5,
+      "tp": 20098,
+      "fp": 1208,
+      "fn": 1216,
+      "support": 21314,
+      "precision": 0.9433023561438093,
+      "recall": 0.9429482968940602,
+      "f1": 0.9431252932895354
+    },
+    {
+      "threshold": 0.7,
+      "tp": 19664,
+      "fp": 597,
+      "fn": 1650,
+      "support": 21314,
+      "precision": 0.9705345244558511,
+      "recall": 0.9225860936473679,
+      "f1": 0.9459530968129886
+    },
+    {
+      "threshold": 0.8,
+      "tp": 19367,
+      "fp": 474,
+      "fn": 1947,
+      "support": 21314,
+      "precision": 0.9761100750970213,
+      "recall": 0.9086515905038941,
+      "f1": 0.941173611954805
+    },
+    {
+      "threshold": 0.9,
+      "tp": 18859,
+      "fp": 339,
+      "fn": 2455,
+      "support": 21314,
+      "precision": 0.9823419106156891,
+      "recall": 0.8848174908510837,
+      "f1": 0.9310327804107424
+    },
+    {
+      "threshold": 0.95,
+      "tp": 18368,
+      "fp": 250,
+      "fn": 2946,
+      "support": 21314,
+      "precision": 0.9865721344935009,
+      "recall": 0.8617809890213005,
+      "f1": 0.9199639386957829
+    },
+    {
+      "threshold": 0.97,
+      "tp": 18030,
+      "fp": 205,
+      "fn": 3284,
+      "support": 21314,
+      "precision": 0.9887578831916644,
+      "recall": 0.8459228675987613,
+      "f1": 0.9117803231434423
+    },
+    {
+      "threshold": 0.98,
+      "tp": 17745,
+      "fp": 168,
+      "fn": 3569,
+      "support": 21314,
+      "precision": 0.9906213364595545,
+      "recall": 0.8325513746833068,
+      "f1": 0.9047339842455452
+    },
+    {
+      "threshold": 0.99,
+      "tp": 17233,
+      "fp": 127,
+      "fn": 4081,
+      "support": 21314,
+      "precision": 0.992684331797235,
+      "recall": 0.80852960495449,
+      "f1": 0.8911930495940426
+    },
+    {
+      "threshold": 0.995,
+      "tp": 16641,
+      "fp": 97,
+      "fn": 4673,
+      "support": 21314,
+      "precision": 0.9942048034412714,
+      "recall": 0.7807544337055456,
+      "f1": 0.8746452223273415
+    },
+    {
+      "threshold": 0.999,
+      "tp": 14559,
+      "fp": 43,
+      "fn": 6755,
+      "support": 21314,
+      "precision": 0.9970551979180934,
+      "recall": 0.6830721591442245,
+      "f1": 0.8107250250584698
+    }
+  ],
+  "verification": "silver_only",
+  "human_verified": false,
+  "automatic_acceptance": false,
+  "calibrated": false,
+  "test_used": false,
+  "partition": "group hash mod2 within already-used dev",
+  "limitations": [
+    "positive-conditioned windows only; absence not evaluated",
+    "checkpoint selected on this dev; diagnostic split is not independent",
+    "thresholds refer to old best weights and original labels; refit after retraining",
+    "no guarantee of 95/98% precision on real traffic"
+  ]
+}

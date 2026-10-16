@@ -100,7 +100,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
     predict = sub.add_parser('predict')
-    predict.add_argument('--checkpoint', default='models/rx9070xt_demo/checkpoint')
+    predict.add_argument('--checkpoint', default='models/transformer/checkpoint')
     predict.add_argument('--cards', default='manual_review/cards.jsonl')
     predict.add_argument('--output', default='manual_review/predictions.jsonl')
     evaluate = sub.add_parser('score')

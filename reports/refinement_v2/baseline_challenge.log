@@ -1,0 +1,23 @@
+The tokenizer you are loading from 'full-4164ed19-ddeb-4aaa-a8ee-c21c7d2d4ebc/checkpoint' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+You're using a BertTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{
+  "tp": 9,
+  "fp": 14,
+  "fn": 3,
+  "support": 12,
+  "precision": 0.391304347826087,
+  "recall": 0.75,
+  "f1": 0.5142857142857142,
+  "loss": 0.20658803700158992,
+  "examples": 23,
+  "evaluation_kind": "agent_authored_synthetic_challenge_exact_span",
+  "not_human_gold": true,
+  "not_full_card_attribute_metric": true,
+  "human_gold": false,
+  "tasks": 23,
+  "negative_tasks": 14,
+  "false_positive_negative_tasks": 8,
+  "elapsed_seconds": 18.07993375299975,
+  "checkpoint": "full-4164ed19-ddeb-4aaa-a8ee-c21c7d2d4ebc/checkpoint",
+  "test_used": false
+}

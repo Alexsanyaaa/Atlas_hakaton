@@ -1,0 +1,15 @@
+{
+  "counts": {
+    "train": {
+      "records": 157702,
+      "spans": 177203
+    },
+    "dev": {
+      "records": 19002,
+      "spans": 21332
+    }
+  },
+  "group_overlap": 0,
+  "test_opened": false,
+  "all_source_offsets_valid": true
+}

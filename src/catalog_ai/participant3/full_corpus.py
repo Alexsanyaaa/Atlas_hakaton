@@ -478,7 +478,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--source', type=Path, default=Path('cu_ws'))
     p.add_argument('--output', type=Path, default=Path('data/participant3_full'))
-    p.add_argument('--categories', type=Path, default=Path('data/participant3/categories.json'))
+    p.add_argument('--categories', type=Path, default=Path('data/participant3_demo/categories.json'))
     p.add_argument('--stage', choices=['catalog', 'finalize-prefix', 'join', 'prepare', 'regroup', 'all'], default='all')
     p.add_argument('--limit-offers', type=int, default=50000, help='0: full catalog; demo default: first 50000 offers')
     p.add_argument('--min-catalog-support', type=int, default=50)

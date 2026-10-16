@@ -1,0 +1,43 @@
+{
+  "version": "refinement_v2",
+  "source_sha256": {
+    "train": "98db3a8c75e9e60926c9c149e8cbd6d0f311e6a788e13e17f6305e09c346b565",
+    "dev": "6cec13e005c8e313d3befcf551a94603fc40cc160b97ac8bb257642140a64f1f"
+  },
+  "statistics": {
+    "train": {
+      "input_records": 157718,
+      "brand_prefix_separated_from_model": 1395,
+      "changed_records": 3317,
+      "russian_color_suffix_separated_from_model": 1736,
+      "wrong_value_type_removed": 46,
+      "quarantined_records": 16,
+      "processor_designation_completed": 161,
+      "output_records": 157702
+    },
+    "dev": {
+      "input_records": 19005,
+      "russian_color_suffix_separated_from_model": 195,
+      "changed_records": 396,
+      "brand_prefix_separated_from_model": 178,
+      "processor_designation_completed": 18,
+      "wrong_value_type_removed": 7,
+      "quarantined_records": 3,
+      "output_records": 19002
+    }
+  },
+  "files_sha256": {
+    "train.jsonl.gz": "6fb975bd00874cd84ba140f622b1e1554fa044f85d9872bd05a4a861bfd871ac",
+    "dev.jsonl.gz": "0b77f22514bf67688b860e0e42153bb82db149127ef1b0622049f37224543530",
+    "hard_train.jsonl": "6bf3a946ff88bbdccc2f62fb1a1c11abdef1822fc421b250abdb2d6e9ae8b641",
+    "challenge.jsonl": "e9549382211595df3e8e8f58e3e97164684ce26d0c303bc46d04c7ecf07d0867",
+    "label_changes.jsonl": "67c62542e424fce3a84776933d0ab1af13e84c115e4dd3c1c2cb82fd69ab68dd",
+    "attribute_registry.json": "360f1f5d16173defb1044d07511ca554ea51e3b6945b5b0828d5cd5fd3b83156"
+  },
+  "test_opened": false,
+  "train_dev_group_overlap": 0,
+  "hard_train_records": 107,
+  "challenge_records": 23,
+  "human_verified": false,
+  "note": "Repaired silver by schema policy and agent-authored synthetic curriculum; no model outputs used to set labels. Dev corrections are not independent gold. Challenge is synthetic and small."
+}
